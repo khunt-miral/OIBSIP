@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class AtmIterface {
+public class AtmInterface {
     public static void main(String[] args) {
         UserDetails myAccount = new UserDetails();
         Scanner input = new Scanner(System.in);
