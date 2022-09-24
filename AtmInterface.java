@@ -26,6 +26,7 @@ public class AtmInterface {
                 System.out.println("3.Deposit");
                 System.out.println("4.Transfer");
                 System.out.println("5.Quit");
+                System.out.println("6. Login");
                 int choice = input.nextInt();
                 switch (choice) {
                     case 1 -> myAccount.transactionHistory();
@@ -33,7 +34,8 @@ public class AtmInterface {
                     case 3 -> myAccount.deposit();
                     case 4 -> myAccount.transfer();
                     case 5 -> System.exit(0);
-                    default -> exit = false;
+                    case 6 -> exit = false;
+                    default -> System.out.println("Invalid choice :");
                 }
             }
         }
@@ -146,6 +148,7 @@ public class UserDetails {
     public void withdraw() {
         System.out.println("Please Enter amount to Withdraw");
         int amount = input.nextInt();
+
         if (balanceDetails.get(checkUserId) != null && amount <= balanceDetails.get(checkUserId)) {
             balanceDetails.put(checkUserId, balanceDetails.get(checkUserId) - amount);
 
@@ -184,9 +187,9 @@ public class UserDetails {
 
     public void transfer() {
         System.out.println("Please Enter account Number to transfer the amount");
-        String accountNumber = input.nextLine();
+        String accountNumber = input.next();
         if (!accountNumberDetails.containsKey(accountNumber)) {
-            System.out.println("Please Enter correct Account Number");
+            System.out.println("Invalid Account Number ");
         } else {
             System.out.println("please enter the amount :");
             int transferAmount = input.nextInt();
@@ -194,7 +197,7 @@ public class UserDetails {
 
             if (transferAmount <= balanceDetails.get(checkUserId) && balanceDetails.get(checkUserId) != null) {
                 balanceDetails.put(checkUserId, balanceDetails.get(checkUserId) - transferAmount);
-                String temp = transferAmount + "   Transferred from your acccount\n";
+                String temp = transferAmount + "   Transferred from your account\n";
 
                 if (transactionHistory.get(checkUserId) == null) {
                     transactionHistory.put(checkUserId, temp);
@@ -212,7 +215,7 @@ public class UserDetails {
             }
 
             balanceDetails.put(id, transferAmount);
-            String temp = receivedAmount + "   Received by your account\n";
+            String temp = receivedAmount + "   Received in your account\n";
 
             if (transactionHistory.get(id) == null) {
                 transactionHistory.put(id, temp);
@@ -230,3 +233,4 @@ public class UserDetails {
         System.out.println(history);
     }
 }
+
